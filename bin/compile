@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+use Phar\Util\Compiler;
+
+$version = file_get_contents(__DIR__.'/../vendor/phpmailer/phpmailer/VERSION');
+
+$compiler = new Compiler();
+$compiler->compile(
+	'phpmailer-'.$version.'.phar',
+	'phpmailer-'.$version.'.phar',
+//	'phpmailer.phar',
+	'phpmailer/phpmailer/src',
+	[
+	    'vendor/phpmailer/phpmailer/src/PHPMailer.php',
+	    'vendor/phpmailer/phpmailer/src/SMTP.php',
+	]
+);
